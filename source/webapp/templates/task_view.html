@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block link_css %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock link_css %}
+{% block content %}
+<body>
+    <br><br>
+<div align="center">
+    <div class="list-group" style="width: 20rem">
+
+    <div class="list-group-item list-group-item-action active">
+      Задание {{ list.id }}
+    </div>
+  <ul>
+    <li class="list-group-item list-group-item-action">{{ list.name }}</li>
+    <li class="list-group-item list-group-item-action">{{ list.status.status }}</li>
+    <li class="list-group-item list-group-item-action">{{ list.type.type }}</li>
+    <li class="list-group-item list-group-item-action">{{ list.description }}</li>
+    <li class="list-group-item list-group-item-action">{{ list.created_at|date:"Y-m-d"}}</li>
+    <li class="list-group-item list-group-item-action">{{ list.updated_at|date:"Y-m-d"}}</li>
+      <a type="button" class="btn btn-primary" href="{% url 'task_update' list.id %}">Редактировать</a>
+      <a type="button" class="btn btn-primary" href="{% url 'task_delete' list.id %}">Удалить</a>
+  </ul>
+</div>
+</div>
+</body>
+</html>
+{% endblock content %}

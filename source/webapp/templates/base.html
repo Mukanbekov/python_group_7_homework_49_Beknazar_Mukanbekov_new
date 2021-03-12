@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Задачи{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "navbar/navbar.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar bg-primary bg-dark">
+        <ul class="menu">
+            <li class="nav-item"><a class="nav-link" href="{% url "index_view" %}">
+                 <img src= width="30" height="20" class="fa fa-table" alt=""> Все задачи </a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url "task_create" %}">
+                 <img src= width="30" height="20" class="fa fa-plus-square" alt=""> Создать </a></li>
+            {% block menu %}{% endblock %}
+        </ul>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock content %}
+    </div>
+<script type="text/javascript" src="http://pcvector.net/templates/pcv/js/pcvector.js"></script>
+</body>
+</html>

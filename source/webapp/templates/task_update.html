@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block page_header %}Редактирвоать{{ list.id }}{% endblock page_header %}
+
+{% block content %}
+    <form action="{% url "task_update" list.id %}" method="post">
+        {% include "task_form.html" with button_text="Редактировать" %}
+    </form>
+{% endblock content %}
