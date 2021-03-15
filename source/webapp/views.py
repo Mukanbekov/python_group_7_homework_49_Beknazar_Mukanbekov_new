@@ -24,7 +24,6 @@ class DetailView(TemplateView):
 
 
 class IndexRedirectView(View):
-
     def get(self, request, **kwargs):
         form = ListForm()
         return render(request, 'task_create.html', context={'form': form})
@@ -32,12 +31,13 @@ class IndexRedirectView(View):
     def post(self, request, *args, **kwargs):
         form = ListForm(data=request.POST)
         if form.is_valid():
+            type = form.cleaned_data.get('type')
             task = List.objects.create(
                 name=form.cleaned_data.get('name'),
                 description=form.cleaned_data.get('description'),
-                status=form.cleaned_data.get('status'),
-                type=form.cleaned_data.get('type'),
+                status=form.cleaned_data.get('status')
             )
+            task.type.set(type)
             return redirect('index_view')
         return render(request, 'task_create.html', context={'form': form})
 
@@ -49,7 +49,7 @@ class UpdateView(View):
             'name': task.name,
             'description': task.description,
             'status': task.status,
-            'type': task.type,
+            'type': task.type.all()
         })
         return render(request, 'task_update.html', context={'form': form, 'list': task})
 
@@ -60,8 +60,9 @@ class UpdateView(View):
             task.name = form.cleaned_data.get("name")
             task.description = form.cleaned_data.get("description")
             task.status = form.cleaned_data.get("status")
-            task.type = form.cleaned_data.get("type")
+            # task.type = form.cleaned_data.get("type")
             task.save()
+            task.type.set(form.cleaned_data.get("type"))
             return redirect('index_view')
         return render(request, 'task_update.html', context={'form': form, 'list': task})
 
