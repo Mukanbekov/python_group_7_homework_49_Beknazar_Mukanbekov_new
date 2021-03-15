@@ -14,7 +14,7 @@
   <ul>
     <li class="list-group-item list-group-item-action">{{ list.name }}</li>
     <li class="list-group-item list-group-item-action">{{ list.status.status }}</li>
-    <li class="list-group-item list-group-item-action">{{ list.type.type }}</li>
+    <li class="list-group-item list-group-item-action">{% for t in list.type.all %}{{ t }} {% if not forloop.last %}; {% endif %}{% endfor %}</li>
   </ul>
 {% endfor %}
 </div>
