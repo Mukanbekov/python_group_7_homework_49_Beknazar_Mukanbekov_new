@@ -11,10 +11,15 @@ class Status(models.Model):
 
 
 class Type(models.Model):
-    type = models.CharField(max_length=20, null=False, blank=False)
+    type = models.CharField(max_length=200, null=False, blank=False, verbose_name='Тип')
+
+    class Meta:
+        db_table = 'types'
+        verbose_name = 'Тип'
+        verbose_name_plural = 'Типы'
 
     def __str__(self):
-        return "{}. {}".format(self.id, self.type)
+        return self.type
 
 
 class List(models.Model):
@@ -23,7 +28,7 @@ class List(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Время изменения')
     status = models.ForeignKey('webapp.Status', related_name='lists', on_delete=models.CASCADE)
-    type = models.ForeignKey('webapp.Type', related_name='lists', on_delete=models.CASCADE)
+    type = models.ManyToManyField('webapp.Type', related_name='lists', blank=True)
 
     class Meta:
         db_table = 'lists'
