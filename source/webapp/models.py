@@ -1,5 +1,9 @@
 from django.db import models
 
+
+from webapp.ValidationError import MinLengthValidator, RegexValidator
+
+regex = ['zzz', 'xxx', 'ccc', 'vvv']
 # Create your models here.
 
 
@@ -23,8 +27,10 @@ class Type(models.Model):
 
 
 class List(models.Model):
-    name = models.CharField(max_length=100, null=False, blank=False, verbose_name='Текст')
-    description = models.TextField(max_length=200, null=False, blank=False, verbose_name='Поле')
+    name = models.CharField(max_length=100, null=False, blank=False, verbose_name='Текст',
+                            validators=(MinLengthValidator(10),))
+    description = models.TextField(max_length=2000, null=False, blank=False, verbose_name='Поле',
+                                   validators=(RegexValidator(regex),))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Время изменения')
     status = models.ForeignKey('webapp.Status', related_name='lists', on_delete=models.CASCADE)
