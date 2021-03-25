@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
-{% load static %}
-{% block link_css %}
-{% endblock link_css %}
 {% block content %}
+    {% if not lists %}
+        <h2>НЕТ ЗАДАЧ</h2>
+    {% else %}
+        {% include "partial/search_form.html" %}
+    {% endif %}
 <body>
 <div align="center">
     <div class="list-group" style="width: 20rem">
@@ -11,12 +13,15 @@
     <div class="list-group-item list-group-item-action active">
         <a class="btn btn-primary stretched-link" href="{% url "detail_view" list.id %}"> Задание {{ list.id }} </a>
     </div>
-  <ul>
-    <li class="list-group-item list-group-item-action">{{ list.name }}</li>
-    <li class="list-group-item list-group-item-action">{{ list.status.status }}</li>
-    <li class="list-group-item list-group-item-action">{% for t in list.type.all %}{{ t }} {% if not forloop.last %}; {% endif %}{% endfor %}</li>
-  </ul>
+      <ul>
+        <li class="list-group-item list-group-item-action">{{ list.name }}</li>
+        <li class="list-group-item list-group-item-action">{{ list.status.status }}</li>
+        <li class="list-group-item list-group-item-action">{% for t in list.type.all %}{{ t }} {% if not forloop.last %}; {% endif %}{% endfor %}</li>
+      </ul>
 {% endfor %}
+{% if is_paginated %}
+    {% include 'partial/paginate.html' %}
+{% endif %}
 </div>
 </div>
 </body>
