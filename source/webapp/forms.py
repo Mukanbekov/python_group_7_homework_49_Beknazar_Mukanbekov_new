@@ -11,3 +11,7 @@ class ListForm(forms.ModelForm):
 
 class TaskDeleteForm(forms.Form):
     name = forms.CharField(max_length=120, required=True, label='Введите имя, чтобы удалить её')
+
+
+class SearchForm(forms.Form):
+    search_value = forms.CharField(max_length=100, required=False, label='Найти')
