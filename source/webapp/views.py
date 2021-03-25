@@ -1,16 +1,47 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import TemplateView, View
+from django.db.models import Q
+from django.urls import reverse
+from django.utils.http import urlencode
+from django.views.generic import TemplateView, View, ListView
 
 from webapp.models import List
-from webapp.forms import ListForm, TaskDeleteForm
+from webapp.forms import ListForm, TaskDeleteForm, SearchForm
 
 
-class IndexView(TemplateView):
+class IndexView(ListView):
     template_name = 'index.html'
+    model = List
+    context_object_name = 'lists'
+    ordering = ('name', '-created_at')
+    paginate_by = 10
+    paginate_orphans = 0
+
+    def get(self, request, **kwargs):
+        self.form = SearchForm(request.GET)
+        self.search_data = self.get_search_data()
+        return super().get(request, **kwargs)
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        if self.search_data:
+            queryset = queryset.filter(
+                Q(name__icontains=self.search_data)
+            )
+        return queryset
+
+    def get_search_data(self):
+        if self.form.is_valid():
+            return self.form.cleaned_data['search_value']
+        return None
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['lists'] = List.objects.all()
+        context['search_form'] = self.form
+
+        if self.search_data:
+            context['query'] = urlencode({'search_value': self.search_data})
+
         return context
 
 
@@ -18,9 +49,8 @@ class DetailView(TemplateView):
     template_name = 'task_view.html'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['list'] = get_object_or_404(List, id=kwargs.get('id'))
-        return context
+        kwargs['list'] = get_object_or_404(List, id=kwargs.get('id'))
+        return super().get_context_data(**kwargs)
 
 
 class IndexRedirectView(View):
