@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block page_header %}Добавить{% endblock page_header %}
 
 {% block content %}
     <form action="/add/" method="post">
-        {% include "task_form.html" with button_text="Создать" %}
+        {% include "partial/form.html" with button_text="Сохранить" %}
     </form>
 {% endblock content %}
