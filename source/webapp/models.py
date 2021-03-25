@@ -28,7 +28,7 @@ class Type(models.Model):
 
 class List(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False, verbose_name='Текст',
-                            validators=(MinLengthValidator(10),))
+                            validators=(MinLengthValidator(5),))
     description = models.TextField(max_length=2000, null=False, blank=False, verbose_name='Поле',
                                    validators=(RegexValidator(regex),))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
