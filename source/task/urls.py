@@ -18,17 +18,29 @@ from django.urls import path
 
 from webapp.views import (
     IndexView,
-    DetailView,
-    IndexRedirectView,
-    UpdateView,
-    DeleteView,
+    Detail,
+    Create,
+    Update,
+    Delete,
+    ListProject,
+    ListProjectCreate,
+    DetailProject,
+    ProjectUpdateView,
+    ProjectDeleteView,
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', IndexView.as_view(), name='index_view'),
-    path('detail/<int:id>/', DetailView.as_view(), name='detail_view'),
-    path('add/', IndexRedirectView.as_view(), name='task_create'),
-    path('update/<int:id>/', UpdateView.as_view(), name='task_update'),
-    path('delete/<int:id>', DeleteView.as_view(), name='task_delete')
+    path('list/', IndexView.as_view(), name='index_view'),
+    path('detail/<int:pk>/', Detail.as_view(), name='detail_view'),
+    path('<int:pk>/add/', Create.as_view(), name='task_create'),
+    path('update/<int:pk>/', Update.as_view(), name='task_update'),
+    path('delete/<int:pk>', Delete.as_view(), name='task_delete'),
+    path('<int:id>/projects/add/', ListProjectCreate.as_view(), name='projects-create'),
+
+    path('', ListProject.as_view(), name='project_view'),
+    path('project/<int:pk>/', DetailProject.as_view(), name='project_detail'),
+    path('project/create/', ListProjectCreate.as_view(), name='project_create'),
+    path('project/update/<int:pk>/', ProjectUpdateView.as_view(), name='project_update'),
+    path('project/delete/<int:pk>', ProjectDeleteView.as_view(), name='project_delete'),
 ]
