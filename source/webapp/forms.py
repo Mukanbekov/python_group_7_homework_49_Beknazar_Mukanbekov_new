@@ -1,6 +1,6 @@
 from django import forms
 
-from webapp.models import List
+from webapp.models import List, Project
 
 
 class ListForm(forms.ModelForm):
@@ -15,3 +15,15 @@ class TaskDeleteForm(forms.Form):
 
 class SearchForm(forms.Form):
     search_value = forms.CharField(max_length=100, required=False, label='Найти')
+
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ('name', 'description', 'created_at', 'updated_at')
+
+
+class ProjectFormUpdate(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ('name', 'description', 'updated_at')
