@@ -50,6 +50,7 @@
     "created_at": "2021-03-13T09:46:06.921Z",
     "updated_at": "2021-03-22T10:04:02.070Z",
     "status": 4,
+    "project": 1,
     "type": [
       2,
       3
@@ -65,6 +66,7 @@
     "created_at": "2021-03-15T11:08:10.895Z",
     "updated_at": "2021-03-22T10:52:40.404Z",
     "status": 2,
+    "project": 1,
     "type": [
       1,
       2
@@ -80,6 +82,7 @@
     "created_at": "2021-03-22T09:56:06.450Z",
     "updated_at": "2021-03-22T11:27:58.161Z",
     "status": 3,
+    "project": 1,
     "type": [
       1,
       2
@@ -87,11 +90,36 @@
   }
 },
 {
+  "model": "webapp.list",
+  "pk": 6,
+  "fields": {
+    "name": "Питание",
+    "description": "Эффективные занятия фитнесом складываются не только из регулярных тренировок, но и из подготовки и восстановления после них. На качество тренировочного процесса сильно влияет ваш рацион и режим питания.",
+    "created_at": "2021-03-24T13:05:08.741Z",
+    "updated_at": "2021-03-24T13:05:08.741Z",
+    "status": 2,
+    "project": 1,
+    "type": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 1,
+  "fields": {
+    "name": "aaaaaaaaaaaaaa",
+    "description": "cvvvvvvvvvvvv",
+    "created_at": "2021-03-01",
+    "updated_at": "2021-03-02"
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$216000$OiPqhrwJWlnz$9yCpP/0Itl+EhSmgZeDTTrBY6OEdePCJdEzqdrqaNpE=",
-    "last_login": "2021-03-13T09:42:14.082Z",
+    "last_login": "2021-03-29T11:47:18.026Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
