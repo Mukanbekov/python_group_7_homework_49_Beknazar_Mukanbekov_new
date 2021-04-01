@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block link_css %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock link_css %}
+{% block content %}
+{#    {% if not project %}#}
+{#        <h2>НЕТ ЗАДАЧ</h2>#}
+{#    {% else %}#}
+{#        {% include "partial/search_form.html" %}#}
+{#    {% endif %}#}
+<body>
+    <br><br>
+    <a type="button" class="btn btn-primary" href="{% url 'task_create' project.id %}">Добавить задачу</a>
+<div align="center">
+    <div class="list-group" style="width: 20rem">
+
+    <div class="list-group-item list-group-item-action active">
+      Проект: {{ project.id }}
+    </div>
+  <ul>
+    <li class="list-group-item list-group-item-action">{{ project.name }}</li>
+    <li class="list-group-item list-group-item-action">{{ project.description }}</li>
+    <li class="list-group-item list-group-item-action">{{ project.created_at|date:"Y-m-d"}}</li>
+    <li class="list-group-item list-group-item-action">{{ project.updated_at|date:"Y-m-d"}}</li>
+      <a type="button" class="btn btn-primary" href="{% url 'project_update' project.id %}">Редактировать</a>
+      <a type="button" class="btn btn-primary" href="{% url 'project_delete' project.id %}">Удалить</a>
+  </ul>
+</div>
+</div>
+    {% if not project.Project.all %}
+        <h2>НЕТ ЗАДАЧ</h2>
+    {% else %}
+    {% endif %}
+
+<div align="center">
+    <div class="list-group" style="width: 20rem">
+   {% for list in project.Project.all %}
+       <br><br>
+    <div class="list-group-item list-group-item-action active">
+        <a class="btn btn-primary stretched-link" href="{% url "detail_view" list.id %}"> Задание {{ list.id }} </a>
+    </div>
+      <ul>
+        <li class="list-group-item list-group-item-action">{{ list.name }}</li>
+        <li class="list-group-item list-group-item-action">{{ list.status.status }}</li>
+        <li class="list-group-item list-group-item-action">{% for t in list.type.all %}{{ t }} {% if not forloop.last %}; {% endif %}{% endfor %}</li>
+      </ul>
+{% endfor %}
+{% if is_paginated %}
+    {% include 'partial/paginate.html' %}
+{% endif %}
+</div>
+</div>
+</body>
+</html>
+{% endblock content %}

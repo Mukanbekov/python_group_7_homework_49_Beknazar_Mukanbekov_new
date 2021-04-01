@@ -1,0 +1,27 @@
+    {% extends 'base.html' %}
+{% block content %}
+{#    {% if not projects %}#}
+{#        <h2>НЕТ ПРОЕКТОВ!</h2>#}
+{#    {% else %}#}
+{#        {% include "partial/search_form.html" %}#}
+{#    {% endif %}#}
+<body>
+
+<div align="center">
+    <div class="list-group" style="width: 20rem">
+   {% for project in projects %}
+       <br><br>
+    <div class="list-group-item list-group-item-action active">
+        <a class="btn btn-primary stretched-link" href="{% url "project_detail" project.id %}"> Проект {{ project.id }} </a>
+    </div>
+      <ul>
+        <li class="list-group-item list-group-item-action">{{ project.name }}</li>
+      </ul>
+{% endfor %}
+{% if is_paginated %}
+    {% include 'partial/paginate.html' %}
+{% endif %}
+</div>
+</div>
+</body>
+{% endblock content %}

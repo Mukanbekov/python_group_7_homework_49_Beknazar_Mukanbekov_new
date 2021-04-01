@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_header %}Добавить{% endblock page_header %}
+
+{% block content %}
+    <form action="" method="post">
+        {% include "partial/form.html" with button_text="Сохранить" %}
+    </form>
+{% endblock content %}
