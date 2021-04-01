@@ -35,6 +35,7 @@ class List(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Время изменения')
     status = models.ForeignKey('webapp.Status', related_name='lists', on_delete=models.CASCADE)
     type = models.ManyToManyField('webapp.Type', related_name='lists', blank=True)
+    project = models.ForeignKey('webapp.Project', related_name='Project', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'lists'
@@ -45,3 +46,17 @@ class List(models.Model):
         return "{}. {}".format(self.id, self.name, self.description)
 
 
+class Project(models.Model):
+    name = models.CharField(max_length=100, null=False, blank=False, verbose_name='Текст',
+                            validators=(MinLengthValidator(5),))
+    description = models.TextField(max_length=2000, null=False, blank=False, verbose_name='Поле',
+                                   validators=(RegexValidator(regex),))
+    created_at = models.DateField(blank=False, null=False, verbose_name='Время создания')
+    updated_at = models.DateField(verbose_name='Время окончания')
+
+    class Meta:
+        verbose_name = 'Проект'
+        verbose_name_plural = 'Проекты'
+
+    def __str__(self):
+        return "{}. {}".format(self.id, self.name, self.description)
