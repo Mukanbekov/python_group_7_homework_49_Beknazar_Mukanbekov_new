@@ -16,8 +16,10 @@
         <ul class="menu">
             <li class="nav-item"><a class="nav-link" href="{% url "index_view" %}">
                  <img src= width="30" height="20" class="fa fa-table" alt=""> Все задачи </a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url "task_create" %}">
-                 <img src= width="30" height="20" class="fa fa-plus-square" alt=""> Создать </a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "project_view" %}">
+                 <img src= width="30" height="20" class="fa fa-table" alt=""> Все Проекты </a></li>
+         <li class="nav-item"><a class="nav-link" href="{% url 'project_create' %}">
+                 <img src= width="30" height="20" class="fa fa-table" alt=""> Добавить проект</a></li>
             {% block menu %}{% endblock %}
         </ul>
     </nav>
