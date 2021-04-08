@@ -11,6 +11,8 @@
 
     <div class="list-group-item list-group-item-action active">
       Задание {{ list.id }}
+        <a class="fas fa-edit" style="font-size:20px; color:white; margin-left: 100px" href="{% url 'task_update' list.id %}"></a>
+        <a class="fas fa-trash-alt" style="font-size:20px; color:white; margin-left: 10px"  href="{% url 'task_delete' list.id %}"></a>
     </div>
   <ul>
     <li class="list-group-item list-group-item-action">{{ list.name }}</li>
@@ -19,8 +21,8 @@
     <li class="list-group-item list-group-item-action">{{ list.description }}</li>
     <li class="list-group-item list-group-item-action">{{ list.created_at|date:"Y-m-d"}}</li>
     <li class="list-group-item list-group-item-action">{{ list.updated_at|date:"Y-m-d"}}</li>
-      <a type="button" class="btn btn-primary" href="{% url 'task_update' list.id %}">Редактировать</a>
-      <a type="button" class="btn btn-primary" href="{% url 'task_delete' list.id %}">Удалить</a>
+
+
   </ul>
 </div>
 </div>
