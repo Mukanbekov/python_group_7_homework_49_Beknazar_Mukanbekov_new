@@ -13,7 +13,7 @@ class IndexView(ListView):
     model = List
     context_object_name = 'lists'
     ordering = ('name', '-created_at')
-    paginate_by = 10
+    paginate_by = 2
     paginate_orphans = 0
 
     def get(self, request, **kwargs):
@@ -55,6 +55,12 @@ class Create(CreateView):
     template_name = 'lists/create.html'
     form_class = ListForm
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('login')
+
+        return super().dispatch(request, *args, **kwargs)
+
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
         list = form.save(commit=False)
@@ -70,6 +76,13 @@ class Update(UpdateView):
     template_name = 'lists/update.html'
     context_object_name = 'list'
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('login')
+
+        return super().dispatch(request, *args, **kwargs)
+
+
     def get_success_url(self):
         return reverse('detail_view', kwargs={'pk': self.kwargs.get('pk')})
 
@@ -79,3 +92,9 @@ class Delete(DeleteView):
     template_name = 'lists/delete.html'
     context_object_name = 'list'
     success_url = reverse_lazy('index_view')
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('login')
+
+        return super().dispatch(request, *args, **kwargs)
