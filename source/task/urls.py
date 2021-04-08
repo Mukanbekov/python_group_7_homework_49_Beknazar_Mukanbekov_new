@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from accounts.views import login_view, logout_view
 from webapp.views import (
     IndexView,
     Detail,
@@ -27,6 +27,7 @@ from webapp.views import (
     DetailProject,
     ProjectUpdateView,
     ProjectDeleteView,
+
 )
 
 urlpatterns = [
@@ -37,6 +38,8 @@ urlpatterns = [
     path('update/<int:pk>/', Update.as_view(), name='task_update'),
     path('delete/<int:pk>', Delete.as_view(), name='task_delete'),
     path('<int:id>/projects/add/', ListProjectCreate.as_view(), name='projects-create'),
+    path('accounts/login/', login_view, name='login'),
+    path('accounts/logout/', logout_view, name='logout'),
 
     path('', ListProject.as_view(), name='project_view'),
     path('project/<int:pk>/', DetailProject.as_view(), name='project_detail'),
