@@ -26,7 +26,8 @@ SECRET_KEY = '!_s#hz1*g4iz)n(g!l4+ce*x8-w=3+d2*&1l%yywzben5m)0gh'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+LOGIN_REDIRECT_URL = 'index_view'
+LOGOUT_REDIRECT_URL = 'login'
 
 # Application definition
 
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webapp',
+    'accounts'
 ]
 
 MIDDLEWARE = [
