@@ -12,7 +12,7 @@
    {% for list in lists %}
        <br><br>
     <div class="list-group-item list-group-item-action active">
-        <a class="btn btn-primary stretched-link" href="{% url "detail_view" list.id %}"> Задание {{ list.id }} </a>
+        <a class="btn btn-primary stretched-link" href="{% url "task:detail" list.id %}"> Задание {{ list.id }} </a>
     </div>
       <ul>
         <li class="list-group-item list-group-item-action">{{ list.name }}</li>

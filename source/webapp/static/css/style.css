@@ -1,3 +1,7 @@
+body {
+background-image: url(../images/1.png);/* Путь к фоновому изображению */
+background-size: 100%;
+}
 .pagination {
     text-align: center;
 }

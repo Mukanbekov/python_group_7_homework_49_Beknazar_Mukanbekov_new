@@ -6,13 +6,12 @@
 {#        {% include "partial/search_form.html" %}#}
 {#    {% endif %}#}
 <body>
-
 <div align="center">
     <div class="list-group" style="width: 20rem">
    {% for project in projects %}
        <br><br>
     <div class="list-group-item list-group-item-action active">
-        <a class="btn btn-primary stretched-link" href="{% url "project_detail" project.id %}"> Проект {{ project.id }} </a>
+        <a class="btn btn-primary stretched-link" href="{% url "task:project_detail" project.id %}"> Проект {{ project.id }} </a>
     </div>
       <ul>
         <li class="list-group-item list-group-item-action">{{ project.name }}</li>

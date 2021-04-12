@@ -11,20 +11,20 @@
 {#    {% endif %}#}
 <body>
     <br><br>
-    <a type="button" class="btn btn-primary" href="{% url 'task_create' project.id %}">Добавить задачу</a>
+    <a type="button" class="btn btn-primary" href="{% url 'task:project_create' %}">Добавить задачу</a>
 <div align="center">
     <div class="list-group" style="width: 20rem">
 
     <div class="list-group-item list-group-item-action active">
       Проект: {{ project.id }}
+         <a class="fas fa-edit" style="font-size:20px; color:white; margin-left: 100px" href="{% url 'task:project_update' project.id %}"></a>
+        <a class="fas fa-trash-alt" style="font-size:20px; color:white; margin-left: 10px"  href="{% url 'task:project_delete' project.id %}"></a>
     </div>
   <ul>
     <li class="list-group-item list-group-item-action">{{ project.name }}</li>
     <li class="list-group-item list-group-item-action">{{ project.description }}</li>
     <li class="list-group-item list-group-item-action">{{ project.created_at|date:"Y-m-d"}}</li>
     <li class="list-group-item list-group-item-action">{{ project.updated_at|date:"Y-m-d"}}</li>
-      <a type="button" class="btn btn-primary" href="{% url 'project_update' project.id %}">Редактировать</a>
-      <a type="button" class="btn btn-primary" href="{% url 'project_delete' project.id %}">Удалить</a>
   </ul>
 </div>
 </div>
@@ -38,7 +38,7 @@
    {% for list in project.Project.all %}
        <br><br>
     <div class="list-group-item list-group-item-action active">
-        <a class="btn btn-primary stretched-link" href="{% url "detail_view" list.id %}"> Задание {{ list.id }} </a>
+        <a class="btn btn-primary stretched-link" href="{% url "task:detail" list.id %}"> Задание {{ list.id }} </a>
     </div>
       <ul>
         <li class="list-group-item list-group-item-action">{{ list.name }}</li>

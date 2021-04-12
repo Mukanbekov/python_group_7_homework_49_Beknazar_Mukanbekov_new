@@ -4,8 +4,8 @@
 {% block page_header %}Вы уверены, что хотите удалить {{ list.name }}?{% endblock page_header %}
 
 {% block content%}
-    <form action="{% url "task_delete" list.id %}" method="POST">
+    <form action="{% url "task:project_delete" list.id %}" method="POST">
         {% include 'partial/task_form.html' with button_text="Да, я хочу удалить" %}
-        <a href="{% url "index_view" %}">Отмена</a>
+        <a href="{% url "task:view" %}">Отмена</a>
     </form>
 {% endblock content %}
