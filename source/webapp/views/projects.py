@@ -23,11 +23,10 @@ class DetailProject(DetailView):
 class ListProjectCreate(CreateView):
     template_name = 'projects/create.html'
     form_class = ProjectForm
-    model = Project
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            return redirect('login')
+            return redirect('accounts:login')
 
         return super().dispatch(request, *args, **kwargs)
 
