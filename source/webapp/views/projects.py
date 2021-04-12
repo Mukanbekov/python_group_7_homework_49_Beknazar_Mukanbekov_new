@@ -31,7 +31,7 @@ class ListProjectCreate(CreateView):
         return super().dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse('project_detail', kwargs={"pk": self.object.pk})
+        return reverse('task:project_detail', kwargs={"pk": self.object.pk})
 
 
 class ProjectUpdateView(UpdateView):
@@ -42,12 +42,12 @@ class ProjectUpdateView(UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            return redirect('login')
+            return redirect('accounts:login')
 
         return super().dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse('project_detail', kwargs={'pk': self.object.pk})
+        return reverse('task:project_detail', kwargs={'pk': self.object.pk})
 
 
 class ProjectDeleteView(DeleteView):
@@ -58,6 +58,6 @@ class ProjectDeleteView(DeleteView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            return redirect('login')
+            return redirect('accounts:login')
 
         return super().dispatch(request, *args, **kwargs)
