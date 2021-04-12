@@ -14,36 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from accounts.views import login_view, logout_view
-from webapp.views import (
-    IndexView,
-    Detail,
-    Create,
-    Update,
-    Delete,
-    ListProject,
-    ListProjectCreate,
-    DetailProject,
-    ProjectUpdateView,
-    ProjectDeleteView,
+from django.urls import path, include
+from django.views.generic import RedirectView
 
-)
+HOMEPAGE_URL = 'task'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('list/', IndexView.as_view(), name='index_view'),
-    path('detail/<int:pk>/', Detail.as_view(), name='detail_view'),
-    path('<int:pk>/add/', Create.as_view(), name='task_create'),
-    path('update/<int:pk>/', Update.as_view(), name='task_update'),
-    path('delete/<int:pk>', Delete.as_view(), name='task_delete'),
-    path('<int:id>/projects/add/', ListProjectCreate.as_view(), name='projects-create'),
-    path('accounts/login/', login_view, name='login'),
-    path('accounts/logout/', logout_view, name='logout'),
-
-    path('', ListProject.as_view(), name='project_view'),
-    path('project/<int:pk>/', DetailProject.as_view(), name='project_detail'),
-    path('project/create/', ListProjectCreate.as_view(), name='project_create'),
-    path('project/update/<int:pk>/', ProjectUpdateView.as_view(), name='project_update'),
-    path('project/delete/<int:pk>', ProjectDeleteView.as_view(), name='project_delete'),
+    path('task/', include('webapp.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('', RedirectView.as_view(url=HOMEPAGE_URL, permanent=False)),
 ]
