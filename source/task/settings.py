@@ -26,10 +26,26 @@ SECRET_KEY = '!_s#hz1*g4iz)n(g!l4+ce*x8-w=3+d2*&1l%yywzben5m)0gh'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-LOGIN_REDIRECT_URL = 'index_view'
-LOGOUT_REDIRECT_URL = 'login'
+LOGIN_REDIRECT_URL = 'task:view'
+LOGOUT_REDIRECT_URL = 'accounts:login'
 
 # Application definition
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
