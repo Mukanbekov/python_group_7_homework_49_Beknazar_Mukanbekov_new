@@ -68,13 +68,13 @@ min-height: 400px;
     -moz-outline-style: none;
 }
 
-#range5 input[type="text"] {
-    background: url("img/user2.png") no-repeat left 10px center;
-}
-
-#range5 input[type="password"] {
-    background: url("img/pencil2.png") no-repeat left 10px center;
-}
+{##range5 input[type="text"] {#}
+{#    background: url("img/user2.png") no-repeat left 10px center;#}
+{#}#}
+{##}
+{##range5 input[type="password"] {#}
+{#    background: url("img/pencil2.png") no-repeat left 10px center;#}
+{#}#}
 
 #range5 input[type="text"],
 #range5 input[type="password"] {
@@ -139,7 +139,7 @@ min-height: 400px;
         <div class="login-wr">
           <h2>Вход</h2>
           <div class="form">
-              <form action="{% url 'login' %}" method="post">
+              <form action="{% url 'accounts:login' %}" method="post">
                   {% csrf_token %}
         {% if has_error %}
             <p class="form-error">Неверное имя пользователя или пароль.</p>
