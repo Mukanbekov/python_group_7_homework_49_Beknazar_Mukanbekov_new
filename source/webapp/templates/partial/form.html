@@ -1,6 +1,6 @@
 {% csrf_token %}
-
-{% for error in form.non_field_errors %}
+<div style="text-align: center">
+    {% for error in form.non_field_errors %}
    <p class="form-error">{{ error }}</p>
 {% endfor %}
 
@@ -13,3 +13,4 @@
     <br>
 {% endfor %}
 <p><input type="submit" value="{{ button_text }}"></p>
+</div>

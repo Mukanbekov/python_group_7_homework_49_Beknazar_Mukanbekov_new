@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Задачи{% endblock title %}</title>
-
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
     <link rel="stylesheet" href="{% static "navbar/navbar.css" %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13,6 +13,7 @@
     <script src='https://kit.fontawesome.com/59d85c08da.js' crossorigin='anonymous'></script>
 </head>
 <body>
+{% csrf_token %}
     <nav class="navbar bg-primary bg-dark">
            <ul class="menu">
          <li class="nav-item"><a class="nav-link" href="{% url "task:view" %}">
@@ -23,9 +24,10 @@
        {% if user.is_authenticated %}
                    <ul class="menu">
 
-
-         <li class="nav-item"><a class="nav-link" href="{% url 'task:project_create' %}">
+         {% if perms.webapp.add_project  %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'task:project_create' %}">
              <i class="fas fa-plus-circle"></i> Добавить проект</a></li>
+         {% endif %}
 
            <li class="menu-right"><a href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}" class="nav-link">
                <img src= width="30" height="20" class="fas fa-door-open" alt="">Выход</a></li>
@@ -35,13 +37,11 @@
            <li class="menu-right"><a href="{% url 'accounts:regis' %}?next={{ request.get_full_path }}" class="nav-link">
                <img src= width="30" height="20" class="fas fa-edit" alt="">Зарегистрироваться</a></li>
        {% endif %}
-   </ul>
+        </ul>
             {% block menu %}{% endblock %}
         </ul>
     </nav>
-    <div class="container">
         {% block content %}{% endblock content %}
-    </div>
 <script type="text/javascript" src="http://pcvector.net/templates/pcv/js/pcvector.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>

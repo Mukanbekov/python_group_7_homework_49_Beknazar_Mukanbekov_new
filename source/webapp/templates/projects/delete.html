@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
-
-{% block title %}Подтвердите удаление{% endblock %}
+    {% block title %}Подтвердите удаление{% endblock %}
 {% block page_header %}Вы уверены, что хотите удалить {{ list.name }}?{% endblock page_header %}
 
 {% block content%}
@@ -9,3 +8,4 @@
         <a href="{% url "task:project_view" %}">Отмена</a>
     </form>
 {% endblock content %}
+

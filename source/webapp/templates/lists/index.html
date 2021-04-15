@@ -1,29 +1,28 @@
-    {% extends 'base.html' %}
+{% extends 'base.html' %}
 {% block content %}
+<body>
     {% if not lists %}
         <h2>НЕТ ЗАДАЧ</h2>
     {% else %}
         {% include "partial/search_form.html" %}
     {% endif %}
-
-<body>
-<div align="center">
-    <div class="list-group" style="width: 20rem">
-   {% for list in lists %}
-       <br><br>
-    <div class="list-group-item list-group-item-action active">
-        <a class="btn btn-primary stretched-link" href="{% url "task:detail" list.id %}"> Задание {{ list.id }} </a>
-    </div>
-      <ul>
-        <li class="list-group-item list-group-item-action">{{ list.name }}</li>
-        <li class="list-group-item list-group-item-action">{{ list.status.status }}</li>
-        <li class="list-group-item list-group-item-action">{% for t in list.type.all %}{{ t }} {% if not forloop.last %}; {% endif %}{% endfor %}</li>
-      </ul>
-{% endfor %}
-{% if is_paginated %}
+        <section class="hero-section">
+  <div class="card-grid">
+         {% for list in lists %}
+    <a class="card" href="{% url "task:detail" list.id %}">
+      <div class="card__background" style="background-image: url(https://w.wallhaven.cc/full/j3/wallhaven-j3xkxm.jpg)"></div>
+      <div class="card__content">
+        <p class="card__category"> Задание {{ list.id }}</p>
+        <h5 class="card__heading">{{ list.name }}</h5>
+          <h1 class="card__category">Статус: {{ list.status.status }}</h1>
+          <h1 class="card__category">Тип: {% for t in list.type.all %}{{ t }} {% if not forloop.last %}; {% endif %}{% endfor %}</h1>
+      </div>
+    </a>
+      {% endfor %}
+  <div>
+                {% if is_paginated %}
     {% include 'partial/paginate.html' %}
 {% endif %}
-</div>
-</div>
+</section>
 </body>
 {% endblock content %}

@@ -11,8 +11,12 @@
 
     <div class="list-group-item list-group-item-action active">
       Задание {{ list.id }}
-        <a class="fas fa-edit" style="font-size:20px; color:white; margin-left: 100px" href="{% url 'task:update' list.id %}"></a>
-        <a class="fas fa-trash-alt" style="font-size:20px; color:white; margin-left: 10px"  href="{% url 'task:delete' list.id %}"></a>
+        {% if perms.webapp.change_list and request.user in list.project.user.all %}
+            <a class="fas fa-edit" style="font-size:20px; color:white; margin-left: 100px" href="{% url 'task:update' list.id %}"></a>
+        {% endif %}
+        {% if perms.webapp.delete_list and request.user in list.project.user.all %}
+            <a class="fas fa-trash-alt" style="font-size:20px; color:white; margin-left: 10px"  href="{% url 'task:delete' list.id %}"></a>
+        {% endif %}
     </div>
   <ul>
     <li class="list-group-item list-group-item-action">{{ list.name }}</li>
