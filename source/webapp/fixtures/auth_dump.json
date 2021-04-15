@@ -1,10 +1,102 @@
 [
 {
+  "model": "auth.group",
+  "pk": 4,
+  "fields": {
+    "name": "manager",
+    "permissions": [
+      [
+        "add_list",
+        "webapp",
+        "list"
+      ],
+      [
+        "change_list",
+        "webapp",
+        "list"
+      ],
+      [
+        "delete_list",
+        "webapp",
+        "list"
+      ],
+      [
+        "add_project",
+        "webapp",
+        "project"
+      ],
+      [
+        "change_project",
+        "webapp",
+        "project"
+      ],
+      [
+        "delete_project",
+        "webapp",
+        "project"
+      ],
+      [
+        "update_delete_user",
+        "webapp",
+        "project"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 5,
+  "fields": {
+    "name": "lead",
+    "permissions": [
+      [
+        "add_list",
+        "webapp",
+        "list"
+      ],
+      [
+        "change_list",
+        "webapp",
+        "list"
+      ],
+      [
+        "delete_list",
+        "webapp",
+        "list"
+      ],
+      [
+        "update_delete_user",
+        "webapp",
+        "project"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 6,
+  "fields": {
+    "name": "dev",
+    "permissions": [
+      [
+        "add_list",
+        "webapp",
+        "list"
+      ],
+      [
+        "change_list",
+        "webapp",
+        "list"
+      ]
+    ]
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$216000$OiPqhrwJWlnz$9yCpP/0Itl+EhSmgZeDTTrBY6OEdePCJdEzqdrqaNpE=",
-    "last_login": "2021-04-12T10:51:55.690Z",
+    "last_login": "2021-04-15T10:48:10.997Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -19,19 +111,67 @@
 },
 {
   "model": "auth.user",
-  "pk": 2,
+  "pk": 9,
   "fields": {
-    "password": "pbkdf2_sha256$216000$5s8cITSeXIZw$sV26R1qWwENCe95lG1B4kyT1lwl2nIn6RJ8qo6mHpBE=",
-    "last_login": "2021-04-12T10:25:19.936Z",
+    "password": "pbkdf2_sha256$216000$vTeO6QqiVnDA$F8TO3zSo7U98pIZaEupPpo2s7+bPpowDXVVHWPW68rw=",
+    "last_login": "2021-04-15T10:48:45.211Z",
     "is_superuser": false,
-    "username": "beka",
-    "first_name": "Beknazar",
-    "last_name": "Mukanbekov",
-    "email": "Beka@mail.ru",
+    "username": "manager",
+    "first_name": "manager",
+    "last_name": "manager",
+    "email": "manager@mail.ru",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2021-04-12T10:25:00.504Z",
-    "groups": [],
+    "date_joined": "2021-04-15T10:05:51Z",
+    "groups": [
+      [
+        "manager"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$N7iHZsP1DXNW$TYTPxx6USnXwR+ift/3n2RcSLrlUBUy9XKQ56toqm9s=",
+    "last_login": "2021-04-15T11:19:43.085Z",
+    "is_superuser": false,
+    "username": "lead",
+    "first_name": "lead",
+    "last_name": "lead",
+    "email": "lead@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-04-15T10:06:14Z",
+    "groups": [
+      [
+        "lead"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$O5cgQqEDdzt3$rl0XwCKIqsvost6uRsQKVVURXfwapDEgsmAYeDtRHI8=",
+    "last_login": "2021-04-15T11:29:16.417Z",
+    "is_superuser": false,
+    "username": "dev",
+    "first_name": "dev",
+    "last_name": "dev",
+    "email": "dev@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-04-15T10:06:35Z",
+    "groups": [
+      [
+        "dev"
+      ]
+    ],
     "user_permissions": []
   }
 }
