@@ -27,3 +27,14 @@ class ProjectFormUpdate(forms.ModelForm):
     class Meta:
         model = Project
         fields = ('name', 'description', 'updated_at')
+
+
+class ProjectFormUpdateUsers(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ('user',)
+        widgets = {
+            'user': forms.CheckboxSelectMultiple(attrs={'class': 'checkbox form-control'})
+        }
+
+
