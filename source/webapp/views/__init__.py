@@ -12,4 +12,5 @@ from webapp.views.projects import (
     ListProjectCreate,
     ProjectUpdateView,
     ProjectDeleteView,
+    UserUpdate,
 )

@@ -26,6 +26,7 @@ from webapp.views import (
     DetailProject,
     ProjectUpdateView,
     ProjectDeleteView,
+    UserUpdate,
 )
 
 app_name = 'task'
@@ -33,7 +34,7 @@ app_name = 'task'
 urlpatterns = [
     path('', IndexView.as_view(), name='view'),
     path('detail/<int:pk>/', Detail.as_view(), name='detail'),
-    path('<int:pk>/add/', Create.as_view(), name='create'),
+    path('project/<int:pk>/create/', Create.as_view(), name='create'),
     path('update/<int:pk>/', Update.as_view(), name='update'),
     path('delete/<int:pk>/', Delete.as_view(), name='delete'),
 
@@ -42,4 +43,5 @@ urlpatterns = [
     path('project/create/', ListProjectCreate.as_view(), name='project_create'),
     path('project/update/<int:pk>/', ProjectUpdateView.as_view(), name='project_update'),
     path('project/delete/<int:pk>', ProjectDeleteView.as_view(), name='project_delete'),
+    path('project/users/update/<int:pk>/', UserUpdate.as_view(), name='user_update'),
 ]
