@@ -53,10 +53,14 @@ class Project(models.Model):
                                    validators=(RegexValidator(regex),))
     created_at = models.DateField(blank=False, null=False, verbose_name='Время создания')
     updated_at = models.DateField(verbose_name='Время окончания')
+    user = models.ManyToManyField('auth.User', blank=True, verbose_name='user', related_name='users')
 
     class Meta:
         verbose_name = 'Проект'
         verbose_name_plural = 'Проекты'
+        permissions = [
+            ('update_delete_user', 'редактировать пользователя')
+        ]
 
     def __str__(self):
         return "{}. {}".format(self.id, self.name, self.description)
