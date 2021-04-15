@@ -3,9 +3,9 @@ from django.db.models import Q
 from django.urls import reverse, reverse_lazy
 from django.utils.http import urlencode
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from webapp.models import List, Project
-from webapp.forms import ListForm, SearchForm
+from webapp.forms import ListForm, SearchForm, ProjectFormUpdateUsers
 
 
 class IndexView(ListView):
@@ -13,7 +13,7 @@ class IndexView(ListView):
     model = List
     context_object_name = 'lists'
     ordering = ('name', '-created_at')
-    paginate_by = 2
+    paginate_by = 8
     paginate_orphans = 0
 
     def get(self, request, **kwargs):
@@ -50,10 +50,11 @@ class Detail(DetailView):
     model = List
 
 
-class Create(CreateView):
-    model = List
+class Create(PermissionRequiredMixin, CreateView):
+    model = Project
     template_name = 'lists/create.html'
     form_class = ListForm
+    permission_required = 'webapp.add_list'
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -67,34 +68,44 @@ class Create(CreateView):
         list.project = project
         list.save()
         form.save_m2m()
-        return redirect('task:project_detail', pk=project.pk)
+        return redirect('task:detail', pk=list.pk)
+
+    def has_permission(self):
+        return super().has_permission() and self.request.user in self.get_object().user.all()
 
 
-class Update(UpdateView):
+class Update(PermissionRequiredMixin, UpdateView):
     form_class = ListForm
     model = List
     template_name = 'lists/update.html'
     context_object_name = 'list'
+    permission_required = 'webapp.change_list'
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             return redirect('accounts:login')
 
         return super().dispatch(request, *args, **kwargs)
-
 
     def get_success_url(self):
         return reverse('task:detail', kwargs={'pk': self.kwargs.get('pk')})
 
+    def has_permission(self):
+        return super().has_permission() and self.request.user in self.get_object().project.user.all()
 
-class Delete(DeleteView):
+
+class Delete(PermissionRequiredMixin, DeleteView):
     model = List
     template_name = 'lists/delete.html'
     context_object_name = 'list'
-    success_url = reverse_lazy('index_view')
+    success_url = reverse_lazy('task:view')
+    permission_required = 'webapp.delete_list'
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             return redirect('accounts:login')
 
         return super().dispatch(request, *args, **kwargs)
+
+    def has_permission(self):
+        return super().has_permission() and self.request.user in self.get_object().project.user.all()
