@@ -35,11 +35,12 @@ class ListProjectCreate(PermissionRequiredMixin, CreateView):
         return reverse('task:project_detail', kwargs={"pk": self.object.pk})
 
 
-class ProjectUpdateView(UpdateView):
+class ProjectUpdateView(PermissionRequiredMixin, UpdateView):
     model = Project
     template_name = 'projects/update.html'
     form_class = ProjectFormUpdate
     context_object_name = 'project'
+    permission_required = 'webapp.change_project'
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
