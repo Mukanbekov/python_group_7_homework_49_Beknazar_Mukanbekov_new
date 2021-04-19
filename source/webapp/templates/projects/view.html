@@ -1,39 +1,243 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block link_css %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock link_css %}
 {% block content %}
+<style>
+    .container {
+  position: relative;
+}
+
+.container .card {
+  position: absolute;
+  width: 300px;
+  height: 420px;
+  background: #232323;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.container .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #9bdc28;
+  clip-path: circle(150px at 80% 20%);
+  transition: 0.5s ease-out;
+}
+
+.container .card:hover::before {
+  clip-path: circle(300px at 80% -20%);
+}
+
+.container .card::after {
+  content: 'ITA';
+  position: absolute;
+  top: 30%;
+  left: +5%;
+  font-size: 12em;
+  font-weight: 800;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.04);
+}
+
+.container .card .imgBx {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  width: 100%;
+  height: 220px;
+  transition: 0.5s;
+}
+
+.container .card:hover .imgBx {
+  top: 15px;
+  transform: translateY(0);
+}
+
+.container .card img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+  width: 270px;
+}
+
+.container .card .contentBx {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  transition: 1s;
+  z-index: 10;
+}
+
+.container .card:hover .contentBx {
+  height: 230px;
+}
+
+.container .card .contentBx h2 {
+  position: relative;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #ffffff;
+  padding: revert;
+}
+
+.container .card .contentBx .size,
+.container .card .contentBx .color {
+  display: inline;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px;
+  transition: 0.5s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.container .card:hover .contentBx .size {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.5s;
+}
+.container .card:hover .contentBx .color {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.6s;
+}
+
+.container .card .contentBx .size h3,
+.container .card .contentBx .color h3 {
+  color: white;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.container .card .contentBx .size span {
+  width: 26px;
+  height: 26px;
+  text-align: center;
+  line-height: 26px;
+  font-size: 14px;
+  display: inline-block;
+  color: #111111;
+  background: #fff;
+  margin: 0 5px;
+  transition: 0.5s;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.container .card .contentBx .size span:hover {
+  background: #9bdc28;
+}
+
+.container .card .contentBx .color span {
+  width: 20px;
+  height: 20px;
+  background: #ff0;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.container .card .contentBx .color span:nth-child(2) {
+  background: #9bdc28;
+}
+
+.container .card .contentBx .color span:nth-child(3) {
+  background: #03a9f4;
+}
+
+.container .card .contentBx .color span:nth-child(4) {
+  background: #e91e63;
+}
+
+.container .card .contentBx a {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #fff;
+  border-radius: 4px;
+  margin-top: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #111111;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 0.5s;
+}
+
+.container .card:hover .contentBx a {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.75s;
+}
+
+textarea {
+    background: transparent;
+    resize: none;
+    outline: none;
+	-moz-appearance: none;
+    color: white;
+}
+</style>
 
 <body>
-<br><br>
+<nav>
+  <ul class="topmenu">
+    <li><a href="" class="down" >Пользователи</a>
+      <ul class="submenu">
+          {% for a in project.user.all %}
+        <li><a class="fas fa-user" href="{% url 'accounts:user_detail' a.id %}"> {{ a.username }}</a></li>
+          {% endfor %}
+      </ul>
+    </li>
 {% if perms.webapp.update_delete_user and request.user in project.user.all %}
     <a class="fas fa-plus" style="font-size:20px; color:white;"  href="{% url 'task:user_update' project.id %}">Добавить пользователя</a>
 {% endif %}
-<div align="center">
-    <div class="list-group" style="width: 20rem">
-    <div class="list-group-item list-group-item-action active">
-      Проект: {{ project.id }}
-        {% if perms.webapp.add_list and request.user in project.user.all %}
-            <a class="fas fa-plus" style="font-size:20px; color:white; margin-left: 100px" href="{% url 'task:create' project.id %}"></a>
+
+
+<div class="container">
+  <div class="card">
+    <div class="imgBx">
+        <h2 style="text-align: center">Проект: {{ project.id }}</h2>
+    </div>
+    <div class="contentBx">
+      <h2>{{ project.name }}</h2>
+    <div class="color">
+        <textarea>{{ project.description }}</textarea>
+    </div>
+      <div class="color">
+        <h3>{{ project.created_at|date:"Y-m-d"}}</h3>
+      </div>
+          <div class="color">
+        <h3>{{ project.updated_at|date:"Y-m-d"}}</h3>
+      </div>
+        {% if perms.webapp.add_list %}
+            <a class="fas fa-plus" style="font-size:15px; color:black;" href="{% url 'task:create' project.id %}"></a>
         {% endif %}
-        {% if perms.webapp.change_project %}
-            <a class="fas fa-edit" style="font-size:20px; color:white;" href="{% url 'task:project_update' project.id %}"></a>
+
+        {% if perms.webapp.update_delete_user and request.user in project.user.all %}
+            <a class="fas fa-edit" style="font-size:15px; color:black;" href="{% url 'task:project_update' project.id %}"></a>
         {% endif %}
-        {% if perms.webapp.delete_project %}
-            <a class="fas fa-trash-alt" style="font-size:20px; color:white;"  href="{% url 'task:project_delete' project.id %}"></a>
+
+        {% if perms.webapp.update_delete_user and request.user in project.user.all %}
+            <a class="fas fa-trash-alt" style="font-size:15px; color:black;"  href="{% url 'task:project_delete' project.id %}"></a>
         {% endif %}
     </div>
-  <ul>
-    <li class="list-group-item list-group-item-action">{{ project.name }}</li>
-    <li class="list-group-item list-group-item-action">{{ project.description }}</li>
-    <li class="list-group-item list-group-item-action">{{ project.created_at|date:"Y-m-d"}}</li>
-    <li class="list-group-item list-group-item-action">{{ project.updated_at|date:"Y-m-d"}}</li>
-  </ul>
+  </div>
 </div>
-</div>
+</nav>
     {% if not project.Project.all %}
-        <h2>НЕТ ЗАДАЧ</h2>
+        <h2 style="text-align: center">НЕТ ЗАДАЧ</h2>
     {% else %}
     {% endif %}
 

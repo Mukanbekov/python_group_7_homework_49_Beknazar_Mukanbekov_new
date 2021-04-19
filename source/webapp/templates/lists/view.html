@@ -11,7 +11,7 @@
 
     <div class="list-group-item list-group-item-action active">
       Задание {{ list.id }}
-        {% if perms.webapp.change_list and request.user in list.project.user.all %}
+        {% if perms.webapp.change_list %}
             <a class="fas fa-edit" style="font-size:20px; color:white; margin-left: 100px" href="{% url 'task:update' list.id %}"></a>
         {% endif %}
         {% if perms.webapp.delete_list and request.user in list.project.user.all %}
@@ -25,8 +25,6 @@
     <li class="list-group-item list-group-item-action">{{ list.description }}</li>
     <li class="list-group-item list-group-item-action">{{ list.created_at|date:"Y-m-d"}}</li>
     <li class="list-group-item list-group-item-action">{{ list.updated_at|date:"Y-m-d"}}</li>
-
-
   </ul>
 </div>
 </div>
