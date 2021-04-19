@@ -1,0 +1,21 @@
+{% block content %}
+<canvas id="stars"></canvas>
+<br><br>
+    <div align="center">
+        <div class="card-grid">
+        {% for project in projects %}
+            <a class="card" href="{% url "task:project_detail" project.id %}">
+                <div class="card__background" style="background-image: url(https://w.wallhaven.cc/full/9m/wallhaven-9md7yw.jpg)"></div>
+                <div class="card__content">
+                    <p class="card__category"> Проект: {{ project.id }}</p>
+                    <h3 class="card__heading">{{ project.name }}</h3>
+                </div>
+            </a>
+        {% endfor %}
+        <div>
+            {% if is_paginated %}
+                {% include 'partial/paginate.html' %}
+            {% endif %}
+        </div>
+<script src="http://atuin.ru/js/art/stars.js" type="text/javascript"></script>
+{% endblock content %}
