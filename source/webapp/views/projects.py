@@ -73,7 +73,7 @@ class UserUpdate(PermissionRequiredMixin, UpdateView):
     form_class = ProjectFormUpdateUsers
 
     def get_success_url(self):
-        return redirect('task:project_view')
+        return reverse('task:project_view')
 
     def has_permission(self):
         return super().has_permission() and self.request.user in self.get_object().user.all()
