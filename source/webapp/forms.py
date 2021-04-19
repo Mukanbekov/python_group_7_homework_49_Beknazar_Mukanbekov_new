@@ -34,7 +34,7 @@ class ProjectFormUpdateUsers(forms.ModelForm):
         model = Project
         fields = ('user',)
         widgets = {
-            'user': forms.CheckboxSelectMultiple(attrs={'class': 'checkbox form-control'})
+            'user': forms.CheckboxSelectMultiple()
         }
 
 
