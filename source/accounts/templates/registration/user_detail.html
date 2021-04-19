@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Пользователь{% endblock %}
+{% block menu_links %}
+    <li><a href="#">Редактировать</a></li>
+    <li><a href="#">Смена пароля</a></li>
+{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.cardd {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.titlee {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+</head>
+<body>
+<h2 style="text-align:center">Личная страница пользователя: {{ user_obj.get_full_name|default:user_obj.username }}</h2>
+<div class="cardd">
+  {% if user_obj.profile.avatar %}
+        <img class="avatar" src="{{ user_obj.profile.avatar.url }}" width="250" height="250" alt="user picture">
+    {% endif %}
+  <h1>Имя пользователя:</h1>
+    <p class="titlee">{{ user_obj.username }}</p>
+    <p class="titlee">Имя: {{ user_obj.first_name }}</p>
+    <p class="titlee">Фамилия: {{ user_obj.last_name }}</p>
+    <p class="titlee">Почта: {{ user_obj.email }}</p>
+    <p class="titlee">Имя: {{ user_obj.profile.user }}</p>
+    <p class="titlee">Почта: {{ user_obj.email }}</p>
+</div>
+    <h2 class="text-center clear">Проект автора:</h2>
+    {% include 'partial/index.html' %}
+</body>
+{% endblock %}
+
