@@ -6,6 +6,11 @@
     "name": "manager",
     "permissions": [
       [
+        "You_have_no_rights",
+        "accounts",
+        "profile"
+      ],
+      [
         "add_list",
         "webapp",
         "list"
@@ -49,6 +54,11 @@
   "fields": {
     "name": "lead",
     "permissions": [
+      [
+        "You_have_no_rights",
+        "accounts",
+        "profile"
+      ],
       [
         "add_list",
         "webapp",
@@ -96,7 +106,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$216000$OiPqhrwJWlnz$9yCpP/0Itl+EhSmgZeDTTrBY6OEdePCJdEzqdrqaNpE=",
-    "last_login": "2021-04-15T10:48:10.997Z",
+    "last_login": "2021-04-19T12:14:31.811Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -114,7 +124,7 @@
   "pk": 9,
   "fields": {
     "password": "pbkdf2_sha256$216000$vTeO6QqiVnDA$F8TO3zSo7U98pIZaEupPpo2s7+bPpowDXVVHWPW68rw=",
-    "last_login": "2021-04-15T12:46:47.784Z",
+    "last_login": "2021-04-19T12:29:46.302Z",
     "is_superuser": false,
     "username": "manager",
     "first_name": "manager",
@@ -136,7 +146,7 @@
   "pk": 10,
   "fields": {
     "password": "pbkdf2_sha256$216000$N7iHZsP1DXNW$TYTPxx6USnXwR+ift/3n2RcSLrlUBUy9XKQ56toqm9s=",
-    "last_login": "2021-04-15T11:19:43.085Z",
+    "last_login": "2021-04-16T10:47:48Z",
     "is_superuser": false,
     "username": "lead",
     "first_name": "lead",
@@ -158,7 +168,7 @@
   "pk": 11,
   "fields": {
     "password": "pbkdf2_sha256$216000$O5cgQqEDdzt3$rl0XwCKIqsvost6uRsQKVVURXfwapDEgsmAYeDtRHI8=",
-    "last_login": "2021-04-15T12:41:03.746Z",
+    "last_login": "2021-04-19T12:29:25.535Z",
     "is_superuser": false,
     "username": "dev",
     "first_name": "dev",

@@ -43,114 +43,117 @@
 },
 {
   "model": "webapp.list",
-  "pk": 4,
+  "pk": 13,
   "fields": {
-    "name": "Здоровье и фитнес",
-    "description": "ЗОЖ",
-    "created_at": "2021-03-15T11:08:10.895Z",
-    "updated_at": "2021-03-22T10:52:40.404Z",
-    "status": 2,
-    "project": 1,
-    "type": [
-      1,
-      2
-    ]
-  }
-},
-{
-  "model": "webapp.list",
-  "pk": 5,
-  "fields": {
-    "name": "Зеленная книга bug",
-    "description": "Утонченный светский лев, богатый и талантливый музыкант нанимает в качестве водителя и телохранителя человека, который менее всего подходит для этой работы.",
-    "created_at": "2021-03-22T09:56:06.450Z",
-    "updated_at": "2021-03-22T11:27:58.161Z",
+    "name": "AAAAAAA AAAAAAA AAAAAAAAAA",
+    "description": "BBBBBBBBBBBBBBBBBBB",
+    "created_at": "2021-04-14T09:35:52.464Z",
+    "updated_at": "2021-04-17T09:55:32.307Z",
     "status": 3,
-    "project": 1,
+    "project": 6,
     "type": [
-      1,
       2
     ]
   }
 },
 {
   "model": "webapp.list",
+  "pk": 14,
+  "fields": {
+    "name": "VVVVVVV VVVVVVV VVV",
+    "description": "CCCCCCCCCCCCCCCCCCC",
+    "created_at": "2021-04-14T10:01:05.962Z",
+    "updated_at": "2021-04-17T10:01:23.718Z",
+    "status": 2,
+    "project": 6,
+    "type": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.list",
+  "pk": 16,
+  "fields": {
+    "name": "ZZZZZZZZZZZZ",
+    "description": "XXXXXXXXXXXXXXXXXXXXXX",
+    "created_at": "2021-04-17T09:56:34.815Z",
+    "updated_at": "2021-04-17T09:56:34.815Z",
+    "status": 2,
+    "project": 13,
+    "type": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.project",
   "pk": 6,
   "fields": {
-    "name": "Питание",
-    "description": "Эффективные занятия фитнесом складываются не только из регулярных тренировок, но и из подготовки и восстановления после них. На качество тренировочного процесса сильно влияет ваш рацион и режим питания.",
-    "created_at": "2021-03-24T13:05:08.741Z",
-    "updated_at": "2021-03-24T13:05:08.741Z",
-    "status": 2,
-    "project": 1,
-    "type": [
-      1
-    ]
-  }
-},
-{
-  "model": "webapp.list",
-  "pk": 7,
-  "fields": {
-    "name": "￼ccccccccccccccccccccc",
-    "description": "ccccccccccccccccccccc",
-    "created_at": "2021-04-01T10:26:17.253Z",
-    "updated_at": "2021-04-01T10:26:17.253Z",
-    "status": 2,
-    "project": 1,
-    "type": [
-      1
-    ]
-  }
-},
-{
-  "model": "webapp.list",
-  "pk": 9,
-  "fields": {
-    "name": "Прокачать уровень",
-    "description": "Тренироваться",
-    "created_at": "2021-04-01T11:28:57.747Z",
-    "updated_at": "2021-04-01T11:28:57.747Z",
-    "status": 2,
-    "project": 3,
-    "type": [
-      1
-    ]
-  }
-},
-{
-  "model": "webapp.list",
-  "pk": 10,
-  "fields": {
-    "name": "Выполнить мисии",
-    "description": "Прочитать инструкцию",
-    "created_at": "2021-04-01T11:30:53.019Z",
-    "updated_at": "2021-04-01T11:30:53.019Z",
-    "status": 3,
-    "project": 3,
-    "type": [
-      1
+    "name": "Картинки",
+    "description": "Картинка (англ. picture) – это визуальный захват объекта, визуальное представление чего-то, например, человека или предмета, произведенного на поверхности: на фотографии, на картине и т.п.",
+    "created_at": "2021-03-09",
+    "updated_at": "2021-05-29",
+    "user": [
+      9,
+      10,
+      11
     ]
   }
 },
 {
   "model": "webapp.project",
+  "pk": 12,
+  "fields": {
+    "name": "Beknazar",
+    "description": "dffffffffffffff",
+    "created_at": "2021-04-01",
+    "updated_at": "2021-03-15",
+    "user": []
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 13,
+  "fields": {
+    "name": "Программирование",
+    "description": "qweasdzxc qweasdzc",
+    "created_at": "2021-04-05",
+    "updated_at": "2021-05-15",
+    "user": [
+      11
+    ]
+  }
+},
+{
+  "model": "accounts.profile",
   "pk": 1,
   "fields": {
-    "name": "Футбол",
-    "description": "Матчи",
-    "created_at": "2021-03-01",
-    "updated_at": "2021-03-02"
+    "user": 9,
+    "avatar": "user_pics/wallhaven-nr79ww.jpg",
+    "git": "http://github.com",
+    "description": "dsfffffffffff"
   }
 },
 {
-  "model": "webapp.project",
+  "model": "accounts.profile",
+  "pk": 2,
+  "fields": {
+    "user": 10,
+    "avatar": "user_pics/wallhaven-1jyx5w.jpg",
+    "git": "http://github.com",
+    "description": "dsgsdfdsfdsfsdf"
+  }
+},
+{
+  "model": "accounts.profile",
   "pk": 3,
   "fields": {
-    "name": "PUBG MOBILE",
-    "description": "PUBG MOBILE is a Battle Royale mobile game",
-    "created_at": "2021-03-01",
-    "updated_at": "2021-03-03"
+    "user": 11,
+    "avatar": "user_pics/wallhaven-k97m5d.jpg",
+    "git": "http://github.com",
+    "description": "sdsaxczxcxzc"
   }
 }
 ]
